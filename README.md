@@ -46,87 +46,76 @@ backend/
 │ └── java/... # Unit & integration tests
 └── README.md # This file
 
-yaml
-Copy
-Edit
+⚙️ Getting Started
+Prerequisites
+Java 17 (or later) installed and on your PATH
 
----
+Git (to clone the repo)
 
-## ⚙️ Getting Started
-
-### ✅ Prerequisites
-
-- Java 17+
-- Git (to clone the repo)
-- Maven (or use the included wrapper)
-
-### 🔧 Setup
-
-```bash
-git clone https://github.com/your-username/sudoku-backend.git
-cd sudoku-backend
-./mvnw clean package
-▶️ Run the App
+Clone & Build
 bash
 Copy
 Edit
-# Method 1: Using Maven wrapper
+git clone https://github.com/your-username/sudoku-backend.git
+cd sudoku-backend
+./mvnw clean package
+Run Locally
+bash
+Copy
+Edit
+# Using Maven wrapper
 ./mvnw spring-boot:run
 
-# Method 2: Run the JAR
+# Or run the built JAR
 java -jar target/sudoku-0.0.1-SNAPSHOT.jar
-App will start on: http://localhost:8080
+By default, the service listens on port 8080.
 
-📡 API Reference
-Base URL: http://localhost:8080/api/sudoku
+📜 API Reference
+All endpoints are under /api/sudoku and expect/return JSON.
 
-Method	Endpoint	Description
-GET	/generate?clues={n}	Generate a new puzzle with n clues
-POST	/solve	Solve a given board
-POST	/validate	Check if a board is valid
+Method	Endpoint	Request Body	Response	Description
+GET	/api/sudoku/generate?clues={n}	n (optional, default 30)	int[9][9]	Generate new board with n clues
+POST	/api/sudoku/solve	{ "board": int[9][9] }	int[9][9]	Solve the submitted board
+POST	/api/sudoku/validate	{ "board": int[9][9] }	boolean	Is the board configuration valid?
 
-🧪 Example: Generate Puzzle
+Example: Generate Puzzle
 bash
 Copy
 Edit
 curl http://localhost:8080/api/sudoku/generate?clues=25
-🧠 Example: Solve Puzzle
+Example: Validate Board
 bash
 Copy
 Edit
-curl -X POST http://localhost:8080/api/sudoku/solve \
-  -H "Content-Type: application/json" \
-  -d '{
-        "board": [
-          [5,3,0,0,7,0,0,0,0],
-          [6,0,0,1,9,5,0,0,0],
-          ...
-        ]
-      }'
-🧪 Running Tests
+curl -X POST http://localhost:8080/api/sudoku/validate \
+     -H "Content-Type: application/json" \
+     -d '{
+           "board": [
+             [5,3,0,0,7,0,0,0,0],
+             [6,0,0,1,9,5,0,0,0],
+             ...
+           ]
+         }'
+🧪 Testing
 bash
 Copy
 Edit
 ./mvnw test
-Test cases are located under src/test/.
+Your unit and integration tests will run under src/test/java.
 
-🛣️ Roadmap
+📌 Roadmap / TODO
  Add difficulty presets (Easy / Medium / Hard)
 
- Add Docker support for deployment
+ Caching for repeated puzzle generation
 
- Rate-limiting and logging
+ Rate‑limiting & API key protection
 
- Connect to frontend game UI
+ Deployment guides (Docker / Kubernetes)
 
- Add Swagger/OpenAPI documentation
+🙌 Contributing
+Fork the repo
 
-🤝 Contributing
-Contributions are welcome!
-
-Fork the repository
-
-Create a new branch: git checkout -b feature/your-feature
+Create a feature branch (git checkout -b feature/XYZ)
 
 Commit your changes
 
@@ -134,14 +123,10 @@ Push to your fork
 
 Submit a Pull Request
 
+Please follow the standard GitHub flow.
+
 📄 License
-Licensed under the MIT License.
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-Built with ☕ Java and ❤️ Spring Boot by Abhishek Chaudhuri
-
-yaml
-Copy
-Edit
-
----
+Built with ❤️ and ☕ by [Your Name]
 
