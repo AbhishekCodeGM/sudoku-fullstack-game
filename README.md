@@ -1,70 +1,125 @@
-# Getting Started with Create React App
+🧩 Sudoku API - Java Spring Boot Backend
+A RESTful backend service for generating, solving, and validating 9×9 Sudoku puzzles. Built with Java and Spring Boot, this microservice powers any web or mobile front‑end to deliver interactive Sudoku gameplay.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🚀 Features
+Generate Puzzle
+Create a new Sudoku board with a specified number of givens (clues).
 
-## Available Scripts
+Solve Puzzle
+Submit a full or partially‑filled board to receive the solved puzzle.
 
-In the project directory, you can run:
+Validate Board
+Check whether a given board configuration is valid according to Sudoku rules.
 
-### `npm start`
+📦 Tech Stack
+Layer	Technology
+Language	Java 17+
+Framework	Spring Boot 3.x
+Build Tool	Maven (wrapper included)
+Testing	JUnit & Spring Test
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+📁 Project Structure
+pgsql
+Copy
+Edit
+backend/
+├── .mvn/                   # Maven wrapper files
+├── mvnw*                   # Maven wrapper scripts
+├── pom.xml                 # Maven configuration
+├── HELP.md                 # Getting‑started tips
+├── src/
+│   ├── main/
+│   │   ├── java/com/sudoku/
+│   │   │   ├── SudokuApplication.java     # Spring Boot entry point
+│   │   │   ├── controller/SudokuController.java
+│   │   │   ├── service/SudokuService.java
+│   │   │   └── model/
+│   │   │       ├── SudokuBoard.java
+│   │   │       └── SudokuRequest.java
+│   │   └── resources/
+│   │       └── application.properties     # App configuration
+│   └── test/                              # Unit & integration tests
+└── README.md               # ← You are here
+⚙️ Getting Started
+Prerequisites
+Java 17 (or later) installed and on your PATH
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Git (to clone the repo)
 
-### `npm test`
+Clone & Build
+bash
+Copy
+Edit
+git clone https://github.com/your-username/sudoku-backend.git
+cd sudoku-backend
+./mvnw clean package
+Run Locally
+bash
+Copy
+Edit
+# Using Maven wrapper
+./mvnw spring-boot:run
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Or run the built JAR
+java -jar target/sudoku-0.0.1-SNAPSHOT.jar
+By default, the service listens on port 8080.
 
-### `npm run build`
+📜 API Reference
+All endpoints are under /api/sudoku and expect/return JSON.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Method	Endpoint	Request Body	Response	Description
+GET	/api/sudoku/generate?clues={n}	n (optional, default 30)	int[9][9]	Generate new board with n clues
+POST	/api/sudoku/solve	{ "board": int[9][9] }	int[9][9]	Solve the submitted board
+POST	/api/sudoku/validate	{ "board": int[9][9] }	boolean	Is the board configuration valid?
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Example: Generate Puzzle
+bash
+Copy
+Edit
+curl http://localhost:8080/api/sudoku/generate?clues=25
+Example: Validate Board
+bash
+Copy
+Edit
+curl -X POST http://localhost:8080/api/sudoku/validate \
+     -H "Content-Type: application/json" \
+     -d '{
+           "board": [
+             [5,3,0,0,7,0,0,0,0],
+             [6,0,0,1,9,5,0,0,0],
+             ...
+           ]
+         }'
+🧪 Testing
+bash
+Copy
+Edit
+./mvnw test
+Your unit and integration tests will run under src/test/java.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+📌 Roadmap / TODO
+ Add difficulty presets (Easy / Medium / Hard)
 
-### `npm run eject`
+ Caching for repeated puzzle generation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+ Rate‑limiting & API key protection
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ Deployment guides (Docker / Kubernetes)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+🙌 Contributing
+Fork the repo
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Create a feature branch (git checkout -b feature/XYZ)
 
-## Learn More
+Commit your changes
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Push to your fork
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Submit a Pull Request
 
-### Code Splitting
+Please follow the standard GitHub flow.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+📄 License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Built with ❤️ and ☕ by Abhishek Chaudhuri
