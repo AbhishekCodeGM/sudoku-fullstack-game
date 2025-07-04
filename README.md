@@ -28,25 +28,25 @@ A RESTful backend service for generating, solving, and validating 9×9 Sudoku pu
 ## 📁 Project Structure
 
 backend/
-├── .mvn/ # Maven wrapper
-├── mvnw / mvnw.cmd # Maven wrapper scripts
-├── pom.xml # Maven configuration
+├── .mvn/                   # Maven wrapper files
+├── mvnw*                   # Maven wrapper scripts
+├── pom.xml                 # Maven configuration
+├── HELP.md                 # Getting‑started tips
 ├── src/
-│ ├── main/
-│ │ ├── java/com/sudoku/
-│ │ │ ├── SudokuApplication.java
-│ │ │ ├── controller/SudokuController.java
-│ │ │ ├── service/SudokuService.java
-│ │ │ └── model/
-│ │ │ ├── SudokuBoard.java
-│ │ │ └── SudokuRequest.java
-│ │ └── resources/
-│ │ └── application.properties
-│ └── test/
-│ └── java/... # Unit & integration tests
-└── README.md # This file
+│   ├── main/
+│   │   ├── java/com/sudoku/
+│   │   │   ├── SudokuApplication.java     # Spring Boot entry point
+│   │   │   ├── controller/SudokuController.java
+│   │   │   ├── service/SudokuService.java
+│   │   │   └── model/
+│   │   │       ├── SudokuBoard.java
+│   │   │       └── SudokuRequest.java
+│   │   └── resources/
+│   │       └── application.properties     # App configuration
+│   └── test/                              # Unit & integration tests
+└── README.md               # ← You are here
 
-⚙️ Getting Started
+# #⚙️ Getting Started
 Prerequisites
 Java 17 (or later) installed and on your PATH
 
@@ -70,7 +70,7 @@ Edit
 java -jar target/sudoku-0.0.1-SNAPSHOT.jar
 By default, the service listens on port 8080.
 
-📜 API Reference
+# 📜 API Reference
 All endpoints are under /api/sudoku and expect/return JSON.
 
 Method	Endpoint	Request Body	Response	Description
@@ -96,10 +96,8 @@ curl -X POST http://localhost:8080/api/sudoku/validate \
              ...
            ]
          }'
-🧪 Testing
-bash
-Copy
-Edit
+# 🧪 Testing
+
 ./mvnw test
 Your unit and integration tests will run under src/test/java.
 
@@ -128,5 +126,5 @@ Please follow the standard GitHub flow.
 📄 License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-Built with ❤️ and ☕ by [Your Name]
+ ## Built with ❤️ and ☕ by Abhishek haudhuri
 
