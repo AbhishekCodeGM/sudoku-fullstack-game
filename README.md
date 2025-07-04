@@ -101,7 +101,7 @@ curl -X POST http://localhost:8080/api/sudoku/validate \
 ./mvnw test
 Your unit and integration tests will run under src/test/java.
 
-📌 Roadmap / TODO
+# 📌 Roadmap / TODO
  Add difficulty presets (Easy / Medium / Hard)
 
  Caching for repeated puzzle generation
@@ -110,7 +110,7 @@ Your unit and integration tests will run under src/test/java.
 
  Deployment guides (Docker / Kubernetes)
 
-🙌 Contributing
+# 🙌 Contributing
 Fork the repo
 
 Create a feature branch (git checkout -b feature/XYZ)
@@ -123,8 +123,8 @@ Submit a Pull Request
 
 Please follow the standard GitHub flow.
 
-📄 License
+# 📄 License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
- ## Built with ❤️ and ☕ by Abhishek haudhuri
+ ## Built with ❤️ and ☕ by Abhishek Chaudhuri
 
